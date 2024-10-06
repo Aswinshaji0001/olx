@@ -11,4 +11,19 @@ async function getProducts() {
         window.location.href="../pages/signin.html"
     }
 }
-getProducts()
+getProducts();
+function profile() {
+    document.getElementById("dropdown").innerHTML=`
+    <div class="up">></div>
+    <div class="down">
+                <div class="image">
+                    <img src="" alt="">
+                </div>
+                <div class="buttons">
+                    <h3>Name</h3>
+                    <button>View Profile</button>
+                    <button>Logout</button>
+                </div>
+            </div>
+    `;
+}

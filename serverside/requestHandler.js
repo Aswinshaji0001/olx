@@ -12,7 +12,7 @@ export async function getProducts(req,res) {
         console.log(user);
         if(!user) 
             return res.status(403).send({msg:"Unauthorized access"})
-        const employees=await employSchema.find();
+        const employees=await userSchema.find();
         res.status(200).send({employees,username:user.username})
         
     } catch (error) {
@@ -68,7 +68,7 @@ export async function signIn(req,res) {
     if(success!==true)
         return res.status(404).send({msg:"email or password is invalid"});
 
-    const token = await sign({userId:user._id},process.env.JWT_KEY,{expiresIn:"2s"});
+    const token = await sign({userId:user._id},process.env.JWT_KEY,{expiresIn:"24h"});
     console.log(token);
     return res.status(200).send({msg:"successfully logged in",token})
     
