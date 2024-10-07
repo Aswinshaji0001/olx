@@ -31,6 +31,17 @@ export async function getUser(req,res) {
     }
 }
 
+export async function editUser(req,res) {
+    try {
+        const {_id}=req.params;
+    const {...user}=req.body;
+    const data=await userSchema.updateOne({_id},{$set:{...user}});
+    res.status(201).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }
+    
+}
 
 
 export async function signUp(req,res) {

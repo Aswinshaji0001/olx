@@ -6,6 +6,7 @@ async function getUser() {
     const res=await fetch(`http://localhost:3000/api/getuser/${id}`);
     const user=await res.json();
     if(user.profile)
+;
     document.getElementById("profile").src=user.profile;
     document.getElementById("username").textContent=user.username;
     document.getElementById("email").textContent=user.email;
@@ -13,6 +14,12 @@ async function getUser() {
     document.getElementById("address").textContent=user.address;
     document.getElementById("pincode").textContent=user.pincode;
     document.getElementById("phone").textContent=user.phone;
-    document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html">Edit Profile</a></button>`
+    document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html?id=${user._id}">Edit Profile</a></button>`
+    document.getElementById("signout").innerHTML=`<button onclick="logout()">Sign Out</button>`
 }
 getUser();
+
+function logout(){
+    localStorage.removeItem("Auth");
+    window.location.href="../pages/signin.html"
+}
