@@ -19,6 +19,33 @@ async function getUser() {
 }
 getUser();
 
+async function getSProducts() {
+
+    const res=await fetch(`http://localhost:3000/api/getsproduct/${id}`);
+    const products = await res.json();
+    str=``;
+    products.map((product)=>{
+        str+=`
+         <div class="prods">
+            <a href="./pages/product.html?id={product._id}">
+           
+                <img src="${product.images[0]}" alt="">
+          
+            <div class="content">
+                <h1>${product.pname}</h1>
+                <h2>Rs ${product.price}/-</h2>
+                <h3>${product.description}</h3>
+            </div>
+            </a>
+        </div>`
+   
+    })
+
+document.getElementById("products").innerHTML=str;
+    
+}
+getSProducts();
+
 function logout(){
     localStorage.removeItem("Auth");
     window.location.href="../pages/signin.html"

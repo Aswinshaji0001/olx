@@ -39,6 +39,16 @@ export async function getProducts(req,res) {
     }
 }
 
+export async function getSProduct(req,res) {
+    try {
+        const {id}=req.params
+        const data=await productSchema.find({sellerId:id});
+        console.log(data);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }
+}
 
 export async function getUser(req,res) {
     try {
