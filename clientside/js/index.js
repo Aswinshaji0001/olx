@@ -8,6 +8,7 @@ async function getProducts() {
             document.getElementById("profileImage").src=`${result.profile}`
             document.getElementById("img2").src=`${result.profile}`
             document.getElementById("link").innerHTML=`<a href="./pages/profile.html?id=${result.id}"><button>View or Edit Profile</button></a>`
+            document.getElementById("sell").innerHTML=`<a href="./pages/addprod.html"><button>+SELL</button></a>`
     }
     else{
         alert("Error");

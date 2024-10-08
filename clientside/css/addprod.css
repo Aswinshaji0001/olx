@@ -15,7 +15,6 @@ body {
     border-radius: 8px;
 }
 .cos{
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -82,11 +81,10 @@ input[type="password"]:focus {
     text-decoration: underline;
 }
 .prf{
-    width: 150px;
-    height: 150px;
+    width: 100%;
 }
 .prf img{
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     margin: auto;
 }

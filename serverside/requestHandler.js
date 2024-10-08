@@ -1,8 +1,30 @@
 import userSchema from './models/user.model.js'
+import productSchema from './models/product.model.js'
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
 
 const {sign}=pkg;
+
+export async function addProducts(req,res){
+    try{
+        console.log("hhai");
+        
+        const{pname,price,category,description,place,address,pincode,phone,images}=req.body;
+        console.log(products);
+            productSchema.create({pname,price,category,description,place,address,pincode,phone,images})
+            .then(()=>{
+                console.log("success");
+                return res.status(201).send({msg:"success"})
+            })
+            .catch((error)=>{
+                console.log("failed");
+                return res.status(404).send({msg:"fail"})
+
+            })
+    }catch(error){
+        res.status(404).send(error);
+    }
+}
 
 export async function getProducts(req,res) {
     try {
