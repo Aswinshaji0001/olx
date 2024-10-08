@@ -6,12 +6,10 @@ import pkg from "jsonwebtoken";
 const {sign}=pkg;
 
 export async function addProducts(req,res){
-    try{
-        console.log("hhai");
-        
-        const{pname,price,category,description,place,address,pincode,phone,images}=req.body;
-        console.log(products);
-            productSchema.create({pname,price,category,description,place,address,pincode,phone,images})
+    try{  
+        const{pname,price,category,description,place,sellerId,address,pincode,phone,images}=req.body;
+        console.log(pname);
+            productSchema.create({pname,price,category,description,place,sellerId,address,pincode,phone,images})
             .then(()=>{
                 console.log("success");
                 return res.status(201).send({msg:"success"})
@@ -31,10 +29,9 @@ export async function getProducts(req,res) {
         console.log(req.user.userId);
         const _id = req.user.userId;
         const user = await userSchema.findOne({_id});
-        console.log(user);
         if(!user) 
             return res.status(403).send({msg:"Unauthorized access"})
-        const products=await userSchema.find();
+        const products=await productSchema.find();
         res.status(200).send({products,profile:user.profile,id:user._id})
         
     } catch (error) {

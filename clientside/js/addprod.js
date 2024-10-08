@@ -1,19 +1,24 @@
+const url=window.location.href;
+const urlParams=new URLSearchParams(url.split("?")[1]);
+const id=urlParams.get("id");
 let images=[];
-
 document.getElementById("addprod").addEventListener("submit",async(e)=>{
     e.preventDefault();
+    const res=await fetch(`http://localhost:3000/api/getuser/${id}`);
+    const user = await res.json();
     const pname=document.getElementById("pname").value;
     const price=document.getElementById("price").value;
     const category=document.getElementById("category").value;
     const description=document.getElementById("description").value;
-    const place=document.getElementById("place").value;
-    const address=document.getElementById("address").value;
-    const pincode=document.getElementById("pincode").value;
-    const phone=document.getElementById("phone").value;
+    const sellerId=user._id;
+    const place=user.place;
+    const address=user.address;
+    const pincode=user.pincode;
+    const phone=user.phone;
     fetch("http://localhost:3000/api/addproducts",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({pname,price,category,description,place,address,pincode,phone,images})
+        body:JSON.stringify({pname,price,category,description,place,sellerId,address,pincode,phone,images})
     }).then((res)=>{
         console.log(res);
         if(res.status==201){
