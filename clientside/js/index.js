@@ -12,7 +12,7 @@ async function getProducts() {
             str=``;
             console.log(result.products);
             result.products.map((product)=>{
-                str=`
+                str+=`
                  <div class="prods">
                     <a href="./pages/product.html?id={product._id}">
                    
