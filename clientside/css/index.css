@@ -103,6 +103,7 @@
         background-color: black;
         height: 5.46vh;
         width: 40px;
+        object-fit: contain;
     }
     .btns{
         margin-left: 15%;
@@ -139,4 +140,7 @@
     .products a{
         text-decoration: none;
         color: black;
+    }
+    .content h1{
+        color: orange;
     }

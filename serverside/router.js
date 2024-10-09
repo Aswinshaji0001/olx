@@ -10,5 +10,5 @@ router.route("/signup").post(signUp)
 router.route("/signin").post(signIn)
 router.route("/getuser/:id").get(getUser)
 router.route("/edituser/:_id").put(editUser)
-router.route("/getsproduct/:_id").get(getSProduct)
+router.route("/getsproduct/:id").get(getSProduct)
 export default router;

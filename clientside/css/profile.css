@@ -121,4 +121,13 @@
     background-color: black;
     height: 5.46vh;
     width: 40px;
+    object-fit: contain;
+}
+input,textarea,select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
 }

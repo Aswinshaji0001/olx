@@ -11,6 +11,7 @@ document.getElementById("addprod").addEventListener("submit",async(e)=>{
     const category=document.getElementById("category").value;
     const description=document.getElementById("description").value;
     const sellerId=user._id;
+    console.log(sellerId);
     const place=user.place;
     const address=user.address;
     const pincode=user.pincode;
