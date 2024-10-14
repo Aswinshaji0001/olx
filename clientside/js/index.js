@@ -15,7 +15,7 @@ async function getProducts() {
             result.products.map((product)=>{
                 str+=`
                  <div class="prods">
-                    <a href="./pages/product.html?id={product._id}">
+                    <a href="./pages/product.html?id=${product._id}">
                    
                         <img src="${product.images[0]}" alt="">
                   
@@ -67,7 +67,7 @@ function logout(){
         products.products.filter((i)=>i.pname.toLowerCase().includes(e.target.value.toLowerCase())).map((product)=>{
             str+=`
                  <div class="prods">
-                    <a href="./pages/product.html?id={product._id}">
+                    <a href="./pages/product.html?id=${product._id}">
                    
                         <img src="${product.images[0]}" alt="">
                   

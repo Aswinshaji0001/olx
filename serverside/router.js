@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct} from "./requestHandler.js";
+import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct, getProductDetails} from "./requestHandler.js";
 import Auth from './middleware/Auth.js'
 
 const router=Router();
@@ -11,4 +11,5 @@ router.route("/signin").post(signIn)
 router.route("/getuser/:id").get(getUser)
 router.route("/edituser/:_id").put(editUser)
 router.route("/getsproduct/:id").get(getSProduct)
+router.route("/getproductdetails/:id").get(getProductDetails)
 export default router;
