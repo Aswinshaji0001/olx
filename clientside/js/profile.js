@@ -29,14 +29,14 @@ async function getSProducts() {
         console.log(product.sellerId);
         str+=`
          <div class="prods">
-            <a href="./pages/product.html?id={product._id}">
+            <a href="../pages/product.html?id=${product._id}">
            
                 <img src="${product.images[0]}" alt="">
           
             <div class="content">
                 <h3>${product.pname}</h3>
                 <h1>Rs ${product.price}</h1>
-                <h4>${product.description}</h4>
+                <h4>${product.category}</h4>
             </div>
             </a>
         </div>`

@@ -78,6 +78,17 @@ export async function editUser(req,res) {
     }
     
 }
+export async function editProducts(req,res) {
+    try {
+        const {_id}=req.params;
+    const {...products}=req.body;
+    const data=await productSchema.updateOne({_id},{$set:{...products}});
+    res.status(201).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }
+    
+}
 
 
 export async function signUp(req,res) {

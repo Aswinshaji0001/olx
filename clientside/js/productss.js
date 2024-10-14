@@ -13,7 +13,6 @@ async function getProductDetails() {
         document.getElementById("img").src=product.images[0];
         document.getElementById("description").innerText=product.description;
         document.getElementById("price").innerText=`₹${product.price}/-`;
-        document.getElementById("edit").innerHTML= `<a href="../pages/proedit.html?id=${product._id}">Edit</a>`
     product.images.map((img)=>{
         const data=document.createElement("img");
         data.src=img;

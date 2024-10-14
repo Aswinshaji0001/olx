@@ -61,6 +61,11 @@ button {
 .edit-btn {
     background-color: #007BFF;
     color: white;
+    text-decoration: none;
+}
+.edit-btn a{
+    text-decoration: none;
+    color: white;
 }
 .delete-btn {
     background-color: #DC3545;
