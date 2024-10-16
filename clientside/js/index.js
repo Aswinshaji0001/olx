@@ -6,6 +6,7 @@ async function getProducts() {
         "Authorization" : `Bearer ${value}`}})
         const result = await res.json();
     if(res.status==200){
+            buyerId=result.id;
             document.getElementById("profileImage").src=`${result.profile}`
             document.getElementById("img2").src=`${result.profile}`
             document.getElementById("link").innerHTML=`<a href="./pages/profile.html?id=${result.id}"><button>View or Edit Profile</button></a>`
