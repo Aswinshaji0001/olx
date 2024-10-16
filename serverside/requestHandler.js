@@ -1,5 +1,6 @@
 import userSchema from './models/user.model.js'
 import productSchema from './models/product.model.js'
+import wishlistSchema from './models/wishlist.model.js'
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
 
@@ -138,4 +139,22 @@ export async function signIn(req,res) {
     
     
     
+}
+
+export async function addWish(req,res) {
+    try {
+        const {...wishlist} = req.body;
+        wishlistSchema
+            .create({...wishlist})
+            .then(()=>{
+                console.log("success");
+                return res.status(201).send({msg:"successs"})
+            })
+            .catch((error)=>{
+                console.log("faliure");
+                return res.status(404).send({msg:"list not added"})
+            })
+    } catch (error) {
+        res.status(404).send(error);
+    }
 }

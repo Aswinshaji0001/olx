@@ -1,3 +1,4 @@
+let buyerId;
 const value = localStorage.getItem("Auth");
 async function getProducts() {
 
@@ -24,6 +25,9 @@ async function getProducts() {
                         <h1>Rs ${product.price}</h1>
                     </div>
                     </a>
+                     <div class="hearts">
+                        <img src="./images/normal.png" alt="" class="heart" onclick="toggleHeart(this,'${product._id}')" id=${product._id}>
+                    </div>
                 </div>`
            
             })
@@ -76,6 +80,9 @@ function logout(){
                         <h1>Rs ${product.price}</h1>
                     </div>
                     </a>
+                     <div class="hearts">
+                        <img src="./images/normal.png" alt="" class="heart" onclick="toggleHeart(this,'${product._id}')" id=${product._id}>
+                    </div>
                 </div>`
         });
         document.getElementById("products").innerHTML=str;
@@ -84,3 +91,39 @@ function logout(){
             console.log(error);
         }
 });
+
+async function toggleHeart(heartElement,id) {
+    const normalHeart = './images/normal.png';
+    const redHeart = './images/red.png';
+    console.log(id);
+    if (heartElement.currentSrc.includes('normal.png')) {
+        heartElement.src = redHeart;
+    } else {
+        heartElement.src = normalHeart;
+    }
+    const res=await fetch(`http://localhost:3000/api/getproductdetails/${id}`);
+    const products=await res.json();  
+    console.log(products);
+    fetch("http://localhost:3000/api/wishlist",{
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({buyerId,products})
+    }).then((res)=>{
+        console.log(res);
+        if(res.status==201){
+            console.log(buyerId);
+            alert("success")
+            console.log(res);  
+        }
+        else if (res.status==404){
+            alert("error")
+        }
+        else{
+            alert("error")
+        }
+        
+    }).catch((error)=>{
+        console.log(error);
+        
+    });
+}
