@@ -101,7 +101,7 @@
     }
     .search img{
         background-color: black;
-        height: 5.46vh;
+        height: 5.4vh;
         width: 40px;
         object-fit: contain;
     }
@@ -118,7 +118,7 @@
     }
     .prods{
         box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-        margin-left: 2%;
+        margin-left: 3%;
         margin-top: 2%;
         padding: 1%;
         border-radius: 8px;

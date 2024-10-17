@@ -158,3 +158,14 @@ export async function addWish(req,res) {
         res.status(404).send(error);
     }
 }
+
+export async function deleteWish(req,res) {
+    try {
+        const {_id}=req.params;
+        console.log(_id);
+        const data=await wishlistSchema.deleteOne({"products._id":_id});
+        res.status(201).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }   
+}

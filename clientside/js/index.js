@@ -96,13 +96,9 @@ function logout(){
 async function toggleHeart(heartElement,id) {
     const normalHeart = './images/normal.png';
     const redHeart = './images/red.png';
-    console.log(id);
     if (heartElement.currentSrc.includes('normal.png')) {
         heartElement.src = redHeart;
-    } else {
-        heartElement.src = normalHeart;
-    }
-    const res=await fetch(`http://localhost:3000/api/getproductdetails/${id}`);
+        const res=await fetch(`http://localhost:3000/api/getproductdetails/${id}`);
     const products=await res.json();  
     console.log(products);
     fetch("http://localhost:3000/api/wishlist",{
@@ -112,7 +108,7 @@ async function toggleHeart(heartElement,id) {
     }).then((res)=>{
         console.log(res);
         if(res.status==201){
-            console.log(buyerId);
+            console.log(buyerId,products);
             alert("success")
             console.log(res);  
         }
@@ -127,4 +123,26 @@ async function toggleHeart(heartElement,id) {
         console.log(error);
         
     });
+    }
+     else {
+        heartElement.src = normalHeart;
+            fetch(`http://localhost:3000/api/deletewish/${id}`,{
+              method:"DELETE",
+                  headers:{"Content-Type":"application/json"}
+            }).then((res)=>{
+                console.log(id);
+                  console.log(res);
+                  if(res.status==201){
+                      alert("Deleted")
+                      window.location.href="../index.html";
+                  }else{
+                      alert("error");
+                      window.location.href="../index.html";
+                  }
+              }). catch ((error)=>{
+                  console.log(error);
+                  
+              })
+    }
+    
 }
