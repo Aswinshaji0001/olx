@@ -34,6 +34,10 @@ async function getProducts() {
             })
         
         document.getElementById("products").innerHTML=str;
+        console.log(result.wlist);
+        result.wlist.map((l)=>{
+            document.getElementById(`${l.products._id}`).src='./images/red.png';
+        })
             
     }
     else{
@@ -86,9 +90,12 @@ function logout(){
                     </div>
                 </div>`
         });
-        document.getElementById("products").innerHTML=str;
-
-        } catch (error) {
+            document.getElementById("products").innerHTML=str;
+            result.wlist.map((l)=>{
+                document.getElementById(`${l.products._id}`).src='./images/red.png';
+            })
+        } 
+        catch (error) {
             console.log(error);
         }
 });
@@ -134,10 +141,8 @@ async function toggleHeart(heartElement,id) {
                   console.log(res);
                   if(res.status==201){
                       alert("Deleted")
-                      window.location.href="../index.html";
                   }else{
                       alert("error");
-                      window.location.href="../index.html";
                   }
               }). catch ((error)=>{
                   console.log(error);

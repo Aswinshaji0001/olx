@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct, getProductDetails, editProducts, addWish, deleteWish} from "./requestHandler.js";
+import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct, getProductDetails, editProducts, addWish, deleteWish, forgetPassword, otpCheck, resetPassword} from "./requestHandler.js";
 import Auth from './middleware/Auth.js'
 
 const router=Router();
@@ -15,4 +15,7 @@ router.route("/getproductdetails/:id").get(getProductDetails)
 router.route("/editproduct/:_id").put(editProducts)
 router.route("/wishlist").post(addWish)
 router.route("/deletewish/:_id").delete(deleteWish)
+router.route("/otp").post(forgetPassword);
+router.route("/otpcheck").post(otpCheck);
+router.route("/resetpassword").post(resetPassword);
 export default router;
