@@ -13,10 +13,13 @@ export default async function Auth(req,res,next) {
         const auth = await verify(token,process.env.JWT_KEY);
         console.log(auth);
         req.user=auth;
+        console.log(auth);
+        
         next();
         
     }
     catch{
-        return res.status(403).send({ msg: "Session expired" });
+        req.user=null;
+        next();
     }
 }   

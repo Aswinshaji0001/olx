@@ -1,6 +1,7 @@
 import userSchema from './models/user.model.js'
 import productSchema from './models/product.model.js'
 import wishlistSchema from './models/wishlist.model.js'
+import bookSchema from './models/book.model.js'
 import bcrypt from 'bcrypt'
 import pkg from "jsonwebtoken";
 import nodemailer from "nodemailer";
@@ -37,13 +38,17 @@ export async function addProducts(req,res){
 
 export async function getProducts(req,res) {
     try {
+        if(req.user!=null){
         const _id = req.user.userId;
         const user = await userSchema.findOne({_id});
-        if(!user) 
-            return res.status(403).send({msg:"Unauthorized access"})
-            const products=await productSchema.find();
-            const wlist=await wishlistSchema.find({buyerId:_id});
+        const products=await productSchema.find({sellerId:{$ne:_id}});
+        const wlist=await wishlistSchema.find({buyerId:_id});
         res.status(200).send({products,profile:user.profile,id:user._id,wlist})
+        }
+        else{
+            const products1=await productSchema.find();
+            return res.status(403).send({products1,msg:"Login for better user experience"})
+        }
         
     } catch (error) {
         res.status(404).send({msg:error})
@@ -224,4 +229,39 @@ export async function resetPassword(req,res) {
     }).catch((error)=>{
         return res.status(404).send({msg:error}); 
     })
+}
+
+export async function setBook(req,res) {
+    try {
+        if (req.user!==null) {
+            const _id = req.user.userId;
+            const {product,date} = req.body;
+            console.log(product);
+            const buyer=await userSchema.findOne({_id},{username:1,place:1,phone:1});
+            bookSchema.create({sellerId:product.sellerId,buyerId:_id,date,buyer,product})
+            .then(()=>{
+                return res.status(201).send({msg:"Booking Successfull"});
+            })
+            .catch((error)=>{
+                return res.status(404).send({msg:"product not added"});
+            })
+        }else{
+            return res.status(403).send({products,msg:"Something went wrong"});
+        }   
+    } catch (error) {
+        res.status(404).send({msg:"error"});
+    }
+}
+export async function getBooking(req,res) {
+    try {
+        const {sellerId}=req.params;
+        console.log(sellerId);
+        
+        const data=await bookSchema.find({sellerId});
+        console.log(data);
+        
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }
 }

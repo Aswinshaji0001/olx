@@ -16,6 +16,7 @@ async function getUser() {
     document.getElementById("phone").textContent=user.phone;
     document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html?id=${user._id}">Edit Profile</a></button>`
     document.getElementById("signout").innerHTML=`<button onclick="logout()">Sign Out</button>`
+    document.getElementById("book").innerHTML=`<a href="./booking.html?id=${user._id}">BOOKINGS</a>`
 }
 getUser();
 
