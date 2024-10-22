@@ -24,3 +24,23 @@ async function getBooking() {
     document.getElementById("tbody").innerHTML=str;
 }
 getBooking();
+
+async function deleteBooking(_id) {
+    console.log(_id);
+    
+    fetch(`http://localhost:3000/api/deletebook`,{
+        method:"DELETE",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({_id})
+      }).then(async(res)=>{
+            const result=await res.json();
+            if(res.status==201){
+                alert(result.msg);
+            }else{
+                alert("error");
+            }
+        }). catch ((error)=>{
+            console.log(error);
+            
+        })
+}

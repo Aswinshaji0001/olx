@@ -17,6 +17,7 @@ async function getUser() {
     document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html?id=${user._id}">Edit Profile</a></button>`
     document.getElementById("signout").innerHTML=`<button onclick="logout()">Sign Out</button>`
     document.getElementById("book").innerHTML=`<a href="./booking.html?id=${user._id}">BOOKINGS</a>`
+
 }
 getUser();
 
@@ -111,3 +112,17 @@ document.getElementById("category").addEventListener('click',async(e)=>{
             console.log(error);
         }
 });
+
+async function deleteAccount() {
+    const res=await fetch(`http://localhost:3000/api/deleteac/${id}`,{
+        method:"POST",
+        headers:{"Content-Type":"application/json"}
+    });
+    const result=await res.json();
+    if(res.status==201){
+        localStorage.setItem("id",`${result._id}`);
+        window.location.href="../pages/deleteac.html";
+    }else{
+        alert(result.msg)
+    }
+}

@@ -14,6 +14,7 @@ async function getProductDetails() {
         document.getElementById("description").innerText=product.description;
         document.getElementById("price").innerText=`₹${product.price}/-`;
         document.getElementById("edit").innerHTML= `<a href="../pages/proedit.html?id=${product._id}">Edit</a>`
+        document.getElementById("delete").innerHTML=`<button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>`
     product.images.map((img)=>{
         const data=document.createElement("img");
         data.src=img;
@@ -31,5 +32,24 @@ getProductDetails();
 
 function change(e){
     document.getElementById("img").src=e;
+}
+
+async function deleteProduct(id) {
+    console.log(id);
+    fetch(`http://localhost:3000/api/deleteproducts/${id}`,{
+        method:"DELETE",
+        headers:{"Content-Type":"application/json"},
+      }).then(async(res)=>{
+            const result=await res.json();
+            if(res.status==201){
+                alert("deleted");
+                window.location.href="../index.html";
+            }else{
+                alert("error");
+            }
+        }). catch ((error)=>{
+            console.log(error);
+            
+        })
 }
 
