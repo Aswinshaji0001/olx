@@ -79,7 +79,9 @@ export async function getUser(req,res) {
     try {
         const {id}=req.params;
         const data=await userSchema.findOne({_id:id});
-        res.status(200).send(data);
+        const data1 = await bookSchema.countDocuments({sellerId:id});
+        console.log(data1);
+        res.status(200).send({data,data1});
     } catch (error) {
         res.status(404).send(error)
     }
@@ -258,6 +260,19 @@ export async function getBooking(req,res) {
         console.log(sellerId);
         
         const data=await bookSchema.find({sellerId});
+        console.log(data);
+        
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(404).send(error)
+    }
+}
+export async function myOrders(req,res) {
+    try {
+        const {buyerId}=req.params;
+        console.log(buyerId);
+        
+        const data=await bookSchema.find({buyerId});
         console.log(data);
         
         res.status(200).send(data);

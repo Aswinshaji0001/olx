@@ -5,19 +5,19 @@ console.log(id);
 async function getUser() {
     const res=await fetch(`http://localhost:3000/api/getuser/${id}`);
     const user=await res.json();
-    if(user.profile)
-;
-    document.getElementById("profile").src=user.profile;
-    document.getElementById("username").textContent=user.username;
-    document.getElementById("email").textContent=user.email;
-    document.getElementById("place").textContent=user.place;
-    document.getElementById("address").textContent=user.address;
-    document.getElementById("pincode").textContent=user.pincode;
-    document.getElementById("phone").textContent=user.phone;
-    document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html?id=${user._id}">Edit Profile</a></button>`
+    console.log(user);
+    if(user.data.profile)
+        document.getElementById("profile").src=user.data.profile;
+    document.getElementById("username").textContent=user.data.username;
+    document.getElementById("email").textContent=user.data.email;
+    document.getElementById("place").textContent=user.data.place;
+    document.getElementById("address").textContent=user.data.address;
+    document.getElementById("pincode").textContent=user.data.pincode;
+    document.getElementById("phone").textContent=user.data.phone;
+    document.getElementById("edit").innerHTML=`<button ><a href="../pages/edit.html?id=${user.data._id}">Edit Profile</a></button>`
     document.getElementById("signout").innerHTML=`<button onclick="logout()">Sign Out</button>`
-    document.getElementById("book").innerHTML=`<a href="./booking.html?id=${user._id}">BOOKINGS</a>`
-
+    document.getElementById("book").innerHTML=`<a href="./booking.html?id=${user.data._id}">BOOKINGS (${user.data1})</a>`
+    document.getElementById("orders").innerHTML=`<a href="./orders.html?id=${user.data._id}">MY ORDERS</a>`
 }
 getUser();
 

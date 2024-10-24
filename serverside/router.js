@@ -1,5 +1,5 @@
 import { Router } from "express";
-import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct, getProductDetails, editProducts, addWish, deleteWish, forgetPassword, otpCheck, resetPassword, setBook, getBooking, deleteBooking, deleteAccount, accountOTP,deleteProduct} from "./requestHandler.js";
+import {signIn,signUp,getProducts,getUser,editUser, addProducts, getSProduct, getProductDetails, editProducts, addWish, deleteWish, forgetPassword, otpCheck, resetPassword, setBook, getBooking, deleteBooking, deleteAccount, accountOTP,deleteProduct, myOrders} from "./requestHandler.js";
 import Auth from './middleware/Auth.js'
 
 const router=Router();
@@ -24,6 +24,8 @@ router.route("/deletebook").delete(deleteBooking);
 router.route("/deleteac/:_id").post(deleteAccount);
 router.route("/deleteotp").delete(accountOTP);
 router.route("/deleteproducts/:_id").delete(deleteProduct);
+router.route("/myorders/:buyerId").get(myOrders);
+
 
 
 export default router;

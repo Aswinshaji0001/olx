@@ -3,7 +3,7 @@ const urlParams=new URLSearchParams(url.split("?")[1]);
 const id=urlParams.get("id");
 console.log(id);
 async function getBooking() {
-    const res=await fetch(`http://localhost:3000/api/getbook/${id}`);
+    const res=await fetch(`http://localhost:3000/api/myorders/${id}`);
     const bookings=await res.json();
     str=``;
     bookings.map((booking)=>{
@@ -15,8 +15,7 @@ async function getBooking() {
                     <td>${booking.buyer.phone}</td>
                     <td>${booking.product.category}</td>
                     <td>
-                        <button class="button" onclick="acceptBooking('${booking._id}')">Accept</button>
-                        <button class="buttons" onclick="deleteBooking('${booking._id}')">Decline</button>
+                        <button class="button" onclick="deleteBooking('${booking._id}')">Delete</button>
                     </td>
                 </tr>
             `
@@ -44,4 +43,4 @@ async function deleteBooking(_id) {
             console.log(error);
             
         })
-}Delete
+}

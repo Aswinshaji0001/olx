@@ -130,10 +130,13 @@ input,textarea,select {
     box-sizing: border-box;
     font-size: 14px;
 }
-.button{
+ .left .button{
     margin-right: 2%;
 }
 button a{
     text-decoration: none;
     color: black;
+}
+.right .button{
+    width: 150px;
 }

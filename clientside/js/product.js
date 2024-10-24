@@ -21,12 +21,12 @@ async function getProductDetails() {
         data.setAttribute("onmouseover",`change("${img}")`);
         document.getElementById("smallimg").appendChild(data);
     })
-    document.getElementById("username").innerText=user.username;
-    document.getElementById("phone").innerText=user.phone;
-    document.getElementById("email").innerText=user.email;
-    document.getElementById("address").innerText=user.address;
-    document.getElementById("place").innerText=user.place;
-    document.getElementById("pincode").innerText=user.pincode;
+    document.getElementById("username").innerText=user.data.username;
+    document.getElementById("phone").innerText=user.data.phone;
+    document.getElementById("email").innerText=user.data.email;
+    document.getElementById("address").innerText=user.data.address;
+    document.getElementById("place").innerText=user.data.place;
+    document.getElementById("pincode").innerText=user.data.pincode;
 }
 getProductDetails();
 
